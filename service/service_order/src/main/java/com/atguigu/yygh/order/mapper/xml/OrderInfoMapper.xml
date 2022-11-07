@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.yygh.order.mapper.OrderInfoMapper">
+
+    <select id="selectOrderCount" resultType="com.atguigu.yygh.vo.order.OrderCountVo">
+        select reserve_date AS reserveDate,
+        COUNT(reserve_date) AS count
+        from yygh_order.order_info
+        <where>
+            <if test="hosname != null and hosname != ''">
+                AND hosname like CONCAT('%',#{hosname},'%')
+            </if>
+            <if test="reserveDateBegin != null and reserveDateBegin != ''">
+                AND reserve_date >= #{reserveDateBegin}
+            </if>
+            <if test="reserveDateEnd != null and reserveDateEnd != ''">
+                AND reserve_date &lt;= #{reserveDateEnd}
+            </if>
+            AND is_deleted = 0
+        </where>
+        GROUP by reserve_date
+        ORDER by reserve_date
+    </select>
+
+
+</mapper>
