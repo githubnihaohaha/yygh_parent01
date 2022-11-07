@@ -6,6 +6,7 @@
 - Spring Cloud
 - Spring Cache
 - Spring Schedule
+- Spring Data
 - Redis
 - MongoDB
 - MyBatis-Plus
